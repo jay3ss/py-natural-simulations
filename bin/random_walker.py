@@ -5,6 +5,7 @@ import random
 import pygame
 
 from classes import Walker
+from helpers.game import init_game
 
 
 BLACK = (0, 0, 0)
@@ -24,7 +25,7 @@ def display(screen, walker):
     pygame.draw.circle(screen, BLACK, position, RADIUS)
 
 
-def draw(screen, walker):
+def draw_circle(screen, walker):
     walker.walk()
     display(screen, walker)
 
@@ -35,13 +36,6 @@ def draw_lines(screen, points):
         pygame.draw.lines(screen, BLACK, False, points_list)
 
 
-def init_game():
-    pygame.init()
-    screen = pygame.display.set_mode([WIDTH, HEIGHT])
-
-    return screen
-
-
 def rand_walker_update():
     dx = random.randint(-1, 1)
     dy = random.randint(-1, 1)
@@ -50,7 +44,7 @@ def rand_walker_update():
 
 
 if __name__ == '__main__':
-    screen = init_game()
+    screen = init_game(WIDTH, HEIGHT)
     walker = Walker(WIDTH, HEIGHT, RADIUS, rand_walker_update)
     clock = pygame.time.Clock()
 
@@ -66,7 +60,7 @@ if __name__ == '__main__':
                 running = False
 
         points.appendleft((walker.x, walker.y))
-        draw(screen, walker)
+        draw_circle(screen, walker)
         draw_lines(screen, points)
         pygame.display.flip()
         clock.tick(FRAME_RATE)
