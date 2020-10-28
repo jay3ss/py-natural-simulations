@@ -1,4 +1,10 @@
 from distutils.core import setup
+import pathlib
+
+
+with open('README.md') as file:
+    readme = file.read()
+
 
 setup(name='Py Natural Simulation',
     version='0.1.0',
@@ -7,4 +13,5 @@ setup(name='Py Natural Simulation',
     url='https://github.com/jay3ss/py-natural-simulations',
     license='GPL3',
     py_modules=['walker'],
+    long_description=readme
 )
